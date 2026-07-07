@@ -1,4 +1,5 @@
-import { ScrollView, Text, View } from "react-native";
+import { Link } from "expo-router";
+import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Index() {
@@ -16,6 +17,13 @@ export default function Index() {
             Poppins type scale + brand palette, wired through NativeWind.
           </Text>
         </View>
+
+        {/* Navigate to the onboarding screen */}
+        <Link href="/onboarding" asChild>
+          <TouchableOpacity className="btn--primary" activeOpacity={0.9}>
+            <Text className="btn__label">Open onboarding</Text>
+          </TouchableOpacity>
+        </Link>
 
         <View className="card gap-2">
           <Text className="text-h3 text-ink">Card / Module Title</Text>
