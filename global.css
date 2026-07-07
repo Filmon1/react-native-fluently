@@ -1,0 +1,147 @@
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css";
+
+@import "nativewind/theme";
+
+/* ------------------------------------------------------------------ */
+/* Design tokens (Tailwind v4 CSS-first theme)                        */
+/* These generate utilities like bg-lingua-purple, text-ink, etc.     */
+/* Keep in sync with /theme (TS tokens for use in JS/StyleSheet).     */
+/* ------------------------------------------------------------------ */
+@theme {
+  /* Fonts — must match the family names loaded in app/_layout.tsx */
+  --font-sans: "Poppins-Regular";
+  --font-poppins: "Poppins-Regular";
+  --font-poppins-medium: "Poppins-Medium";
+  --font-poppins-semibold: "Poppins-SemiBold";
+  --font-poppins-bold: "Poppins-Bold";
+
+  /* Brand / Primary */
+  --color-lingua-purple: #6c4ef5; /* Lingua Purple      */
+  --color-lingua-deep-purple: #5b3bf6; /* Lingua Deep Purple */
+  --color-lingua-blue: #4d8bff; /* Lingua Blue        */
+  --color-lingua-green: #21c16b; /* Lingua Green       */
+
+  /* Semantic */
+  --color-success: #21c16b; /* Success */
+  --color-warning: #ffc800; /* Warning */
+  --color-streak: #ff8a00; /* Streak  */
+  --color-error: #ff4d4f; /* Error   */
+  --color-info: #4d8bff; /* Info    */
+
+  /* Neutrals */
+  --color-ink: #0d132b; /* Text / Primary   */
+  --color-muted: #6b7280; /* Text / Secondary */
+  --color-border: #e5e7eb; /* Border           */
+  --color-surface: #f6f7fb; /* Surface          */
+  --color-background: #ffffff; /* Background       */
+}
+
+/* ------------------------------------------------------------------ */
+/* Typography scale (Poppins)                                         */
+/* Each class bundles font family + size + line height so the correct */
+/* Poppins weight file is always used (RN can't synthesize weights).  */
+/* ------------------------------------------------------------------ */
+
+/* H1 — Page / Screen Title — 32 / Bold / 1.2 */
+@utility text-h1 {
+  font-family: "Poppins-Bold";
+  font-size: 32px;
+  line-height: 38px;
+}
+
+/* H2 — Section Title — 24 / SemiBold / 1.3 */
+@utility text-h2 {
+  font-family: "Poppins-SemiBold";
+  font-size: 24px;
+  line-height: 31px;
+}
+
+/* H3 — Card / Module Title — 20 / SemiBold / 1.3 */
+@utility text-h3 {
+  font-family: "Poppins-SemiBold";
+  font-size: 20px;
+  line-height: 26px;
+}
+
+/* H4 — Subheading — 16 / Medium / 1.4 */
+@utility text-h4 {
+  font-family: "Poppins-Medium";
+  font-size: 16px;
+  line-height: 22px;
+}
+
+/* Body Large — Important content — 16 / Regular / 1.6 */
+@utility text-body-lg {
+  font-family: "Poppins-Regular";
+  font-size: 16px;
+  line-height: 26px;
+}
+
+/* Body Medium — Body text — 14 / Regular / 1.6 */
+@utility text-body-md {
+  font-family: "Poppins-Regular";
+  font-size: 14px;
+  line-height: 22px;
+}
+
+/* Body Small — Supporting text — 13 / Regular / 1.6 */
+@utility text-body-sm {
+  font-family: "Poppins-Regular";
+  font-size: 13px;
+  line-height: 21px;
+}
+
+/* Caption — Labels, meta text — 11 / Regular / 1.4 */
+@utility text-caption {
+  font-family: "Poppins-Regular";
+  font-size: 11px;
+  line-height: 15px;
+}
+
+/* ------------------------------------------------------------------ */
+/* Reusable component utilities (BEM)                                 */
+/* ------------------------------------------------------------------ */
+
+/* Screen container — full-height page background */
+@utility screen {
+  flex: 1;
+  background-color: var(--color-background);
+}
+
+/* Card — surface block used across lessons, lists, modules */
+@utility card {
+  background-color: var(--color-background);
+  border-width: 1px;
+  border-color: var(--color-border);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0px 4px 16px rgba(13, 19, 43, 0.06);
+}
+
+/* Card variant sitting on the app background (soft grey surface) */
+@utility card--surface {
+  background-color: var(--color-surface);
+  border-color: var(--color-surface);
+}
+
+/* Primary button — solid brand purple pill */
+@utility btn--primary {
+  background-color: var(--color-lingua-purple);
+  border-radius: 16px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  padding-left: 24px;
+  padding-right: 24px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Primary button label */
+@utility btn__label {
+  font-family: "Poppins-SemiBold";
+  font-size: 16px;
+  line-height: 22px;
+  color: #ffffff;
+}
