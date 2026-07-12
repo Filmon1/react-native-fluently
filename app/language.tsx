@@ -94,7 +94,11 @@ export default function LanguageSelection() {
           <TouchableOpacity
             className="btn--primary flex-row items-center justify-center"
             activeOpacity={0.9}
-            onPress={() => router.back()}
+            onPress={() =>
+              // Forward the chosen language to the home route, then return to
+              // it (navigating to "/" pops back to the existing screen).
+              router.navigate({ pathname: "/", params: { language: selected } })
+            }
           >
             <Text className="btn__label">Confirm</Text>
           </TouchableOpacity>
