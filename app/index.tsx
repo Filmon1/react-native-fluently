@@ -1,10 +1,18 @@
 import { useAuth } from "@clerk/expo";
-import { Redirect } from "expo-router";
+import { Redirect, useLocalSearchParams, useRouter } from "expo-router";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+import { getLanguage } from "@/data/languages";
+import type { LanguageCode } from "@/types/learning";
+
 export default function Index() {
+  const router = useRouter();
   const { isSignedIn, isLoaded, signOut } = useAuth();
+
+  // Language chosen on the selection screen, forwarded via route params.
+  const { language } = useLocalSearchParams<{ language?: LanguageCode }>();
+  const selectedLanguage = language ? getLanguage(language) : undefined;
 
   // Wait for Clerk to restore the session before deciding where to go.
   if (!isLoaded) {
@@ -32,13 +40,32 @@ export default function Index() {
           </Text>
         </View>
 
-        {/* Sign out — the home guard then redirects back to onboarding */}
+        {/* Currently selected language, forwarded from the picker */}
+        {selectedLanguage && (
+          <View className="card--surface gap-1">
+            <Text className="text-caption text-muted">LEARNING</Text>
+            <Text className="text-h3 text-ink">{selectedLanguage.name}</Text>
+          </View>
+        )}
+
+        {/* Navigate to the language selection screen */}
         <TouchableOpacity
           className="btn--primary"
           activeOpacity={0.9}
+          onPress={() => router.push("/language")}
+        >
+          <Text className="btn__label">
+            {selectedLanguage ? "Change language" : "Choose a language"}
+          </Text>
+        </TouchableOpacity>
+
+        {/* Sign out — the home guard then redirects back to onboarding */}
+        <TouchableOpacity
+          className="card card--surface items-center"
+          activeOpacity={0.9}
           onPress={() => void signOut()}
         >
-          <Text className="btn__label">Sign Out</Text>
+          <Text className="text-h4 text-muted">Sign Out</Text>
         </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
