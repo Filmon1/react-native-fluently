@@ -316,6 +316,7 @@ export const lessons: Lesson[] = [
           objectives: [
             "Get the learner to greet you with 'こんにちは'",
             "Have the learner say their name",
+            "Have the learner thank you with 'ありがとう'",
             "End by saying 'さようなら'",
           ],
         },
