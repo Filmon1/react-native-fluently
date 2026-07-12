@@ -1,9 +1,10 @@
 import { useAuth } from "@clerk/expo";
-import { Redirect } from "expo-router";
+import { Redirect, useRouter } from "expo-router";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Index() {
+  const router = useRouter();
   const { isSignedIn, isLoaded, signOut } = useAuth();
 
   // Wait for Clerk to restore the session before deciding where to go.
@@ -32,13 +33,22 @@ export default function Index() {
           </Text>
         </View>
 
-        {/* Sign out — the home guard then redirects back to onboarding */}
+        {/* Navigate to the language selection screen */}
         <TouchableOpacity
           className="btn--primary"
           activeOpacity={0.9}
+          onPress={() => router.push("/language")}
+        >
+          <Text className="btn__label">Choose a language</Text>
+        </TouchableOpacity>
+
+        {/* Sign out — the home guard then redirects back to onboarding */}
+        <TouchableOpacity
+          className="card--surface items-center"
+          activeOpacity={0.9}
           onPress={() => void signOut()}
         >
-          <Text className="btn__label">Sign Out</Text>
+          <Text className="text-h4 text-muted">Sign Out</Text>
         </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
