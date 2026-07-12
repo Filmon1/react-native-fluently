@@ -72,7 +72,16 @@ export default function SignIn() {
     }
 
     if (signIn.status === "complete") {
-      await signIn.finalize();
+      const { error: finalizeError } = await signIn.finalize();
+      if (finalizeError) {
+        setError(
+          clerkErrorMessage(
+            finalizeError,
+            "We verified your code but couldn't finish signing you in. Please close this and start again.",
+          ),
+        );
+        return false;
+      }
       return true;
     }
 
