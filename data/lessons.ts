@@ -259,6 +259,69 @@ export const lessons: Lesson[] = [
       },
     ],
   },
+
+  // ── Japanese · Greetings ───────────────────────────────────────────────────
+  {
+    id: "ja-greetings",
+    languageCode: "ja",
+    unitId: "ja-basics",
+    title: "Greetings",
+    description: "Say hello and goodbye in Japanese.",
+    order: 1,
+    xp: 10,
+    goals: [
+      { id: "ja-greetings-g1", label: "Greet someone in Japanese" },
+      { id: "ja-greetings-g2", label: "Say thank you" },
+    ],
+    activities: [
+      {
+        id: "ja-greetings-vocab",
+        type: "vocabulary",
+        title: "New words",
+        instruction: "Learn these greeting words.",
+        vocabulary: [
+          {
+            id: "ja-konnichiwa",
+            term: "こんにちは",
+            translation: "hello",
+            pronunciation: "kohn-nee-chee-wah",
+            example: "こんにちは！げんきですか？",
+          },
+          {
+            id: "ja-sayonara",
+            term: "さようなら",
+            translation: "goodbye",
+            pronunciation: "sah-YOH-nah-rah",
+          },
+          {
+            id: "ja-arigato",
+            term: "ありがとう",
+            translation: "thank you",
+            pronunciation: "ah-ree-gah-TOH",
+          },
+        ],
+      },
+      {
+        id: "ja-greetings-chat",
+        type: "chat",
+        title: "Practice with your AI tutor",
+        instruction: "Have a short greeting conversation.",
+        aiTeacher: {
+          system:
+            "You are a warm, patient Japanese tutor for absolute beginners. " +
+            "Use simple Japanese with short sentences, and add a quick English " +
+            "hint in parentheses for new words. Keep the tone encouraging and " +
+            "gently correct mistakes.",
+          greeting: "こんにちは！せんせいです。おなまえは？",
+          objectives: [
+            "Get the learner to greet you with 'こんにちは'",
+            "Have the learner say their name",
+            "End by saying 'さようなら'",
+          ],
+        },
+      },
+    ],
+  },
 ];
 
 /** Look up a single lesson by its id. */

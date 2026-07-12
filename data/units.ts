@@ -39,6 +39,17 @@ export const units: Unit[] = [
     icon: "👋",
     lessonIds: ["de-greetings"],
   },
+  // ── Japanese ─────────────────────────────────────────────────────────────
+  {
+    id: "ja-basics",
+    languageCode: "ja",
+    title: "Basics",
+    description: "Your first words in Japanese.",
+    level: "beginner",
+    order: 1,
+    icon: "👋",
+    lessonIds: ["ja-greetings"],
+  },
 ];
 
 /** Get all units for a language, sorted by their `order`. */
