@@ -1,5 +1,6 @@
+import { useAuth } from "@clerk/expo";
 import { Ionicons } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
+import { Redirect, useRouter } from "expo-router";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -46,6 +47,17 @@ function SpeechBubble({
 
 export default function Onboarding() {
   const router = useRouter();
+  const { isSignedIn, isLoaded } = useAuth();
+
+  // Wait for Clerk to restore the session before deciding where to go.
+  if (!isLoaded) {
+    return null;
+  }
+
+  // Already authenticated → skip onboarding and go straight home.
+  if (isSignedIn) {
+    return <Redirect href="/" />;
+  }
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
@@ -113,7 +125,7 @@ export default function Onboarding() {
         <TouchableOpacity
           className="btn--primary flex-row items-center justify-center mb-4 mt-2"
           activeOpacity={0.9}
-          onPress={() => router.back()}
+          onPress={() => router.push("/sign-up")}
         >
           <Text className="btn__label">Get Started</Text>
           <View className="absolute right-6">
